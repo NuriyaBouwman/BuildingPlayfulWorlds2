@@ -33,9 +33,17 @@ public class CameraMove : MonoBehaviour {
 		LevelManager.Instance.state = GameState.Playing;
 	}
 
+	public Transform player;
+  	public Vector3 offset;
+
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if(LevelManager.Instance.state == GameState.CameraMoving) 
+			{
+        	return;
+        	}
+
+        transform.position = new Vector3 (player.position.x + offset.x, player.position.y + offset.y, offset.z);
 	}
 }
