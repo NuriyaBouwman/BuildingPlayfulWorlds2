@@ -1,9 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouwmanNuriya_Unicorn_Game", "Assembly-CSharp-firstpass.csproj", "{01DF08A5-53BF-D9CE-31F2-977F20C9592A}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouwmanNuriya_Unicorn_Game.Plugins", "BouwmanNuriya_Unicorn_Game.Plugins.csproj", "{EB60CF75-86D7-E5B8-11A3-6BBA357D997B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouwmanNuriya_Unicorn_Game", "Assembly-CSharp-Editor-firstpass.csproj", "{92F0F833-8C41-E2A2-611E-ECDFB3944EE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouwmanNuriya_Unicorn_Game", "BouwmanNuriya_Unicorn_Game.csproj", "{37FB2DC3-1E9E-9E8B-8EC1-EFE3BD6E0DD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouwmanNuriya_Unicorn_Game.Editor.Plugins", "BouwmanNuriya_Unicorn_Game.Editor.Plugins.csproj", "{3907E4E8-6842-120D-AF01-A80AB9E24FAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,19 +13,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{01DF08A5-53BF-D9CE-31F2-977F20C9592A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01DF08A5-53BF-D9CE-31F2-977F20C9592A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01DF08A5-53BF-D9CE-31F2-977F20C9592A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01DF08A5-53BF-D9CE-31F2-977F20C9592A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92F0F833-8C41-E2A2-611E-ECDFB3944EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92F0F833-8C41-E2A2-611E-ECDFB3944EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92F0F833-8C41-E2A2-611E-ECDFB3944EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92F0F833-8C41-E2A2-611E-ECDFB3944EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB60CF75-86D7-E5B8-11A3-6BBA357D997B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB60CF75-86D7-E5B8-11A3-6BBA357D997B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB60CF75-86D7-E5B8-11A3-6BBA357D997B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB60CF75-86D7-E5B8-11A3-6BBA357D997B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37FB2DC3-1E9E-9E8B-8EC1-EFE3BD6E0DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37FB2DC3-1E9E-9E8B-8EC1-EFE3BD6E0DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37FB2DC3-1E9E-9E8B-8EC1-EFE3BD6E0DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37FB2DC3-1E9E-9E8B-8EC1-EFE3BD6E0DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3907E4E8-6842-120D-AF01-A80AB9E24FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3907E4E8-6842-120D-AF01-A80AB9E24FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3907E4E8-6842-120D-AF01-A80AB9E24FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3907E4E8-6842-120D-AF01-A80AB9E24FAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
