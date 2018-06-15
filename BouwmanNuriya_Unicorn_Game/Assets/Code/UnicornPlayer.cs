@@ -5,10 +5,9 @@ using UnityEngine;
 public class UnicornPlayer : MonoBehaviour {
 
     private Rigidbody2D unicornRigidbody;
-
+    private Animator unicornAnimator;
     [SerializeField]
     private float movementSpeed;
-
     private bool facingRight;
 
 	// Use this for initialization
@@ -16,6 +15,7 @@ public class UnicornPlayer : MonoBehaviour {
     {
         facingRight = true;
         unicornRigidbody = GetComponent<Rigidbody2D>();
+        unicornAnimator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -32,6 +32,7 @@ public class UnicornPlayer : MonoBehaviour {
     {
         unicornRigidbody.velocity = new Vector2(horizontal * movementSpeed, unicornRigidbody.velocity.y);
 
+        unicornAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
     private void Flip(float horizontal)
