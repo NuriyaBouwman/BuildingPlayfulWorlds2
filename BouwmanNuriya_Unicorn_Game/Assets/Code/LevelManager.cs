@@ -19,9 +19,9 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	public GameObject obstaclePrefab;
+	//public GameObject obstaclePrefab;
 
-	private List<GameObject> obstacles;
+	//private List<GameObject> obstacles;
 
 	public GameState state = GameState.CameraMoving;
 
@@ -30,18 +30,18 @@ public class LevelManager : MonoBehaviour
 		instance = this;
 	}
 
-	// Use this for initialization
-	void Start () 
-	{
-		obstacles = new List<GameObject> ();
+	 //Use this for initialization
+	//void Start () 
+	//{
+	//	obstacles = new List<GameObject> ();
 
-		for(int i = 0; i < 5; ++i)
-		{
-			GameObject obstacle = Instantiate(obstaclePrefab, new Vector3(i, 2, 0), Quaternion.identity);
+	//	for(int i = 0; i < 5; ++i)
+	//	{
+	//		GameObject obstacle = Instantiate(obstaclePrefab, new Vector3(i, 2, 0), Quaternion.identity);
 
-			obstacles.Add (obstacle); 
-		}
-	}
+	//		obstacles.Add (obstacle); 
+	//	}
+	//}
 	
 	// Update is called once per frame
 	void Update () {

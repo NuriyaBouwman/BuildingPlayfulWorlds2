@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour {
 
-	// Use this for initialization
+    [SerializeField]
+    private float xMax;
+    [SerializeField]
+    private float yMax;
+    [SerializeField]
+    private float xMin;
+    [SerializeField]
+    private float yMin;
+
+    private Transform target;
+    
+    // Use this for initialization
 	void Start () 
 	{
 		StartCoroutine(MoveCamera ());
+
+        target = GameObject.Find("UnicornPlayer").transform;
 	}
 
 	private IEnumerator MoveCamera()
@@ -33,9 +46,6 @@ public class CameraMove : MonoBehaviour {
 		LevelManager.Instance.state = GameState.Playing;
 	}
 
-	public Transform player;
-  	public Vector3 offset;
-
 	// Update is called once per frame
 	void Update () 
 	{
@@ -44,6 +54,6 @@ public class CameraMove : MonoBehaviour {
         	return;
         	}
 
-        transform.position = new Vector3 (player.position.x + offset.x, player.position.y + offset.y, offset.z);
+        transform.position = new Vector3(Mathf.Clamp(target.position.x, xMin, xMax), Mathf.Clamp(target.position.y, yMin, yMax), transform.position.z); ;
 	}
 }

@@ -291,9 +291,8 @@
     <Compile Include="Assets\Code\Camera2DFollow.cs" />
     <Compile Include="Assets\Code\CameraFollow.cs" />
     <Compile Include="Assets\Code\CameraMove.cs" />
+    <Compile Include="Assets\Code\CollisionTrigger.cs" />
     <Compile Include="Assets\Code\LevelManager.cs" />
-    <Compile Include="Assets\Code\Platformer2DUserControl.cs" />
-    <Compile Include="Assets\Code\PlatformerCharacter2D.cs" />
     <Compile Include="Assets\Code\Restarter.cs" />
     <Compile Include="Assets\Code\UnicornPlayer.cs" />
   </ItemGroup>
