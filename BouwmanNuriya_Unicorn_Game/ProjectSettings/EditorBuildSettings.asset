@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/BouwmanNuriya_Unicorn_Game_menuscene.unity
+    guid: 9a0143edeb3e7e6428339ce8b3927861
+  - enabled: 1
+    path: Assets/BouwmanNuriya_Unicorn_Game_scene1.unity
+    guid: 26e81f5762ef8ae4aafc538d530b10f4

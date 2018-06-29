@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class UnicornPlayer : MonoBehaviour {
 
-    private Rigidbody2D unicornRigidbody;
     private Animator unicornAnimator;
+
+    [SerializeField]
+    private Transform arrowPos;
 
     [SerializeField]
     private float movementSpeed;
     private bool facingRight;
-
-    private bool isGrounded;
 
     [SerializeField]
     private Transform[] groundPoints;
@@ -21,8 +21,7 @@ public class UnicornPlayer : MonoBehaviour {
 
     [SerializeField]
     private LayerMask whatIsGround;
-    
-    private bool jump;
+   
 
     [SerializeField]
     private bool airControl;
@@ -30,14 +29,35 @@ public class UnicornPlayer : MonoBehaviour {
     [SerializeField]
     private float jumpForce;
 
+    [SerializeField]
+    private GameObject arrowPrefab;
 
-	// Use this for initialization
-	void Start ()
+    public Rigidbody2D UnicornRigidbody { get; set; }
+
+    public bool Jump { get; set; }
+    public bool OnGround { get; set; }
+    public bool Throw { get; set; }
+
+    private static UnicornPlayer instance;
+    public static UnicornPlayer Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<UnicornPlayer>();
+            }
+            return instance;
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         facingRight = true;
-        unicornRigidbody = GetComponent<Rigidbody2D>();
+        UnicornRigidbody = GetComponent<Rigidbody2D>();
         unicornAnimator = GetComponent<Animator>();
-	}
+    }
 
     void Update()
     {
@@ -49,34 +69,29 @@ public class UnicornPlayer : MonoBehaviour {
     {
         float horizontal = Input.GetAxis("Horizontal");
 
-        isGrounded = IsGrounded();
+        OnGround = IsGrounded();
 
         HandleMovement(horizontal);
 
         Flip(horizontal);
 
         HandleLayers();
-
-        ResetValues();
 	}
 
     private void HandleMovement(float horizontal)
     {
-        if (unicornRigidbody.velocity.y < 0)
+       if (UnicornRigidbody.velocity.y < 0)
         {
             unicornAnimator.SetBool("land", true);
         }
-        if (isGrounded || airControl)
+       if (!Throw && (OnGround || airControl))
         {
-            unicornRigidbody.velocity = new Vector2(horizontal * movementSpeed, unicornRigidbody.velocity.y);
+            UnicornRigidbody.velocity = new Vector2(horizontal * movementSpeed, UnicornRigidbody.velocity.y);
         }
-        if (isGrounded && jump)
+       if (Jump && UnicornRigidbody.velocity.y == 0)
         {
-            isGrounded = false;
-            unicornRigidbody.AddForce(new Vector2(0, jumpForce));
-            unicornAnimator.SetTrigger("jump");
+            UnicornRigidbody.AddForce(new Vector2(0, jumpForce));
         }
-        
 
         unicornAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
@@ -85,7 +100,12 @@ public class UnicornPlayer : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump = true;
+            unicornAnimator.SetTrigger("jump");
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            unicornAnimator.SetTrigger("throw");
         }
     }
 
@@ -103,14 +123,9 @@ public class UnicornPlayer : MonoBehaviour {
         }
     }
 
-    private void ResetValues()
-    {
-        jump = false;
-    }
-
     private bool IsGrounded()
     {
-        if (unicornRigidbody.velocity.y <= 0)
+        if (UnicornRigidbody.velocity.y <= 0)
         {
             foreach (Transform point in groundPoints)
             {
@@ -120,8 +135,6 @@ public class UnicornPlayer : MonoBehaviour {
                 {
                     if (colliders[i].gameObject != gameObject)
                     {
-                        unicornAnimator.ResetTrigger("jump");
-                        unicornAnimator.SetBool("land", false);
                         return true;
                     }
                 }
@@ -132,13 +145,41 @@ public class UnicornPlayer : MonoBehaviour {
 
     private void HandleLayers()
     {
-        if(!isGrounded)
+        if(!OnGround)
         {
             unicornAnimator.SetLayerWeight(1, 1);
         }
         else
         {
             unicornAnimator.SetLayerWeight(1, 0);
+        }
+    }
+
+    public void ThrowArrow(int value)
+    {
+
+        if (OnGround && value == 0)
+        {
+            if (facingRight)
+            {
+                GameObject tmp = (GameObject)Instantiate(arrowPrefab, arrowPos.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+                tmp.GetComponent<Arrow>().Initialize(Vector2.right);
+            }
+            else
+            {
+                GameObject tmp = (GameObject)Instantiate(arrowPrefab, arrowPos.position, Quaternion.Euler(new Vector3(0, 0, 180)));
+                tmp.GetComponent<Arrow>().Initialize(Vector2.left);
+
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Star")
+        {
+            GameManager.Instance.CollectedStars++;
+            Destroy(other.gameObject);
         }
     }
 }
